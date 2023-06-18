@@ -13,6 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { AddressFields } from '../Form/AddressFields'
 import { HeaderForm } from '../Form/HeaderForm'
 import { XCircle } from 'phosphor-react'
+import { useAddress } from '../../hooks/useAddress'
 
 export function DeliveryModal() {
   const {
@@ -25,15 +26,17 @@ export function DeliveryModal() {
   })
 
   const { closeModal, showModal } = useModal()
+  const { setAddress, clearAddress } = useAddress()
 
   function onSubmit(data: ConfirmDelivery) {
-    console.log(data)
+    setAddress(data)
     closeModal()
   }
 
   function handleCloseModal() {
     reset()
     closeModal()
+    clearAddress()
   }
 
   return (

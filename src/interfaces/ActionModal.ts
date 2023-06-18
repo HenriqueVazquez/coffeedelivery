@@ -7,3 +7,7 @@ export interface ShowMOdal {
 export interface HideModal {
   type: ActionTypeModal.HIDE_MODAL
 }
+
+export interface Action {
+  type: ActionTypeModal
+}

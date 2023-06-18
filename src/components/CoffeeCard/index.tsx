@@ -10,8 +10,9 @@ import {
 } from './styles'
 import { QuantityInput } from '../QuantityInput'
 import { useState } from 'react'
-import { useCart } from '../../hooks/usecart'
+
 import { CoffeeProps } from '../../interfaces/CoffeeProps'
+import { useCart } from '../../hooks/useCart'
 
 export function CoffeeCard({ coffee }: CoffeeProps) {
   const { addCoffeeToCart } = useCart()

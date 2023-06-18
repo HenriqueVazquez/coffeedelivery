@@ -1,8 +1,5 @@
+import { Action } from '../../interfaces/ActionModal'
 import { ActionTypeModal } from './actions'
-
-export interface Action {
-  type: ActionTypeModal
-}
 
 const initialState = false
 

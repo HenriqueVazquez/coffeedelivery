@@ -2,7 +2,7 @@ import { produce } from 'immer'
 
 import { ActionTypeCart } from './actions'
 import { CartItem } from '../../interfaces/CartItem'
-import { Action } from '../../types/Action'
+import { Action } from '../../types/ActionCart'
 
 export function cartReducer(cartItems: CartItem[], action: Action): CartItem[] {
   switch (action.type) {

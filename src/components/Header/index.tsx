@@ -4,12 +4,15 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 
 import coffeLogoImage from '../../assets/logoCoffeeDelivery.svg'
 import { NavLink } from 'react-router-dom'
-import { useCart } from '../../hooks/usecart'
+import { useCart } from '../../hooks/useCart'
 import { useModal } from '../../hooks/useModal'
+import { useAddress } from '../../hooks/useAddress'
 
 export function Header() {
   const { cartQuantity } = useCart()
   const { openModal } = useModal()
+
+  const { address } = useAddress()
 
   return (
     <HeaderContainer>
@@ -21,7 +24,7 @@ export function Header() {
         <HeaderButtonsContainer>
           <HeaderButton variant="purple" onClick={openModal}>
             <MapPin size={20} weight="fill" />
-            São Paulo, SP
+            {address ? `${address.city}, ${address.uf}` : `São Paulo, SP`}
           </HeaderButton>
 
           <NavLink to="/cart">

@@ -12,10 +12,10 @@ export function AddressFields({ register, errors }: AddressFieldsProps) {
   return (
     <FieldsContainer>
       <div className="row">
-        <Label>
+        <Label htmlFor="cep">
           <InputForm
             id="cep"
-            type="number"
+            type="text"
             placeholder="CEP"
             {...register('cep')}
             className="cep"
@@ -24,9 +24,9 @@ export function AddressFields({ register, errors }: AddressFieldsProps) {
         </Label>
       </div>
       <div className="row">
-        <Label>
+        <Label htmlFor="street">
           <InputForm
-            id="rua"
+            id="street"
             type="text"
             placeholder="Rua"
             {...register('street')}
@@ -37,7 +37,7 @@ export function AddressFields({ register, errors }: AddressFieldsProps) {
       </div>
 
       <div className="row numberComplement">
-        <Label className="labelNumber">
+        <Label className="labelNumber" htmlFor="number">
           <InputForm
             id="number"
             type="text"
@@ -47,7 +47,7 @@ export function AddressFields({ register, errors }: AddressFieldsProps) {
             error={errors?.number?.message}
           />
         </Label>
-        <Label>
+        <Label htmlFor="complement">
           <InputForm
             id="complement"
             rightText="Opcional"
@@ -60,7 +60,7 @@ export function AddressFields({ register, errors }: AddressFieldsProps) {
         </Label>
       </div>
       <div className="row row3">
-        <Label className="districtLabel">
+        <Label className="districtLabel" htmlFor="district">
           <InputForm
             id="district"
             type="text"
@@ -70,7 +70,7 @@ export function AddressFields({ register, errors }: AddressFieldsProps) {
             error={errors?.district?.message}
           />
         </Label>
-        <Label>
+        <Label htmlFor="city">
           <InputForm
             id="city"
             type="text"
@@ -80,7 +80,7 @@ export function AddressFields({ register, errors }: AddressFieldsProps) {
             error={errors?.city?.message}
           />
         </Label>
-        <Label className="ufLabel">
+        <Label className="ufLabel" htmlFor="uf">
           <InputForm
             id="uf"
             type="text"

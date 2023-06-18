@@ -5,9 +5,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
 import { CartContextProvider } from './contexts/CartContext'
 import { ModalContextProvider } from './contexts/ModalContext'
+
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import { AddressContextProvider } from './contexts/AddressContext'
+import { useAddress } from './hooks/useAddress'
 
 export const deliveryFormValidationSchema = zod.object({
   cep: zod.string().min(1, 'Informe o CEP'),
@@ -22,16 +25,10 @@ export const deliveryFormValidationSchema = zod.object({
 export type ConfirmDelivery = zod.infer<typeof deliveryFormValidationSchema>
 
 export function App() {
+  const { address } = useAddress()
+
   const confirmDeliveryForm = useForm<ConfirmDelivery>({
-    defaultValues: {
-      cep: '',
-      street: '',
-      number: '',
-      complement: '',
-      district: '',
-      city: 'São Paulo',
-      uf: 'SP',
-    },
+    defaultValues: address,
     resolver: zodResolver(deliveryFormValidationSchema),
   })
 
@@ -39,13 +36,15 @@ export function App() {
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
       <BrowserRouter>
-        <CartContextProvider>
-          <ModalContextProvider>
-            <FormProvider {...confirmDeliveryForm}>
-              <Router />
-            </FormProvider>
-          </ModalContextProvider>
-        </CartContextProvider>
+        <AddressContextProvider>
+          <CartContextProvider>
+            <ModalContextProvider>
+              <FormProvider {...confirmDeliveryForm}>
+                <Router />
+              </FormProvider>
+            </ModalContextProvider>
+          </CartContextProvider>
+        </AddressContextProvider>
       </BrowserRouter>
     </ThemeProvider>
   )

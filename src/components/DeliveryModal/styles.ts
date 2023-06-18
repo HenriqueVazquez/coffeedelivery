@@ -15,6 +15,7 @@ export const StyledModal = styled(Modal)`
   box-shadow: none;
   gap: 1rem;
   padding: 1rem;
+  border-radius: 5px;
   padding-bottom: 1rem;
   max-height: 80vh;
   overflow-y: auto;
@@ -52,6 +53,7 @@ export const CloseButton = styled.button`
   right: calc(-0.1rem / 2);
   background: none;
   border: 0;
+  border-radius: 5px;
 
   svg {
     color: ${(props) => props.theme.colors['base-error-button']};
