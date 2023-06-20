@@ -12,10 +12,13 @@ import { ConfirmDelivery, deliveryFormValidationSchema } from '../../App'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AddressFields } from '../Form/AddressFields'
 import { HeaderForm } from '../Form/HeaderForm'
-import { XCircle } from 'phosphor-react'
+import { MapPinLine, XCircle } from 'phosphor-react'
 import { useAddress } from '../../hooks/useAddress'
+import { useTheme } from 'styled-components'
 
 export function DeliveryModal() {
+  const { colors } = useTheme()
+
   const {
     register,
     handleSubmit,
@@ -42,7 +45,11 @@ export function DeliveryModal() {
   return (
     <ModalContainer>
       <StyledModal isOpen={showModal} onRequestClose={closeModal}>
-        <HeaderForm />
+        <HeaderForm
+          title="Endereço de Entrega"
+          subtitle="Informe o endereço onde deseja receber seu pedido"
+          icon={<MapPinLine color={colors['brand-yellow-dark']} size={22} />}
+        />
         <Form onSubmit={handleSubmit(onSubmit)}>
           <AddressFields register={register} errors={errors} />
           <div className="registerButtonContainer">

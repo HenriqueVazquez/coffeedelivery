@@ -1,16 +1,16 @@
-import { MapPinLine } from 'phosphor-react'
 import { HeaderContainer, TitleModal } from './styles'
 import { RegularText } from '../../Typography'
+import { HeaderFormProps } from '../../../interfaces/HeaderFormProps'
 
-export function HeaderForm() {
+export function HeaderForm({ title, subtitle, icon }: HeaderFormProps) {
   return (
     <HeaderContainer>
-      <MapPinLine size={22} weight="bold" />
+      {icon}
       <TitleModal size="m" color="subtitle">
-        Endereço de Entrega
+        {title}
       </TitleModal>
       <RegularText size="s" color="text">
-        Informe o endereço onde deseja receber seu pedido
+        {subtitle}
       </RegularText>
     </HeaderContainer>
   )

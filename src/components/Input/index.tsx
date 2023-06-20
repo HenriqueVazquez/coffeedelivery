@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { forwardRef, InputHTMLAttributes } from 'react'
 
 import {
@@ -27,3 +26,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     )
   },
 )
+
+Input.displayName = 'Input'

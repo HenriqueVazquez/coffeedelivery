@@ -79,6 +79,9 @@ export const FieldsContainer = styled.div`
     width: 12.6rem;
   }
 
+  .row3 {
+    padding: 0 0.49rem 0 0;
+  }
   .district {
     width: 12.5rem;
   }

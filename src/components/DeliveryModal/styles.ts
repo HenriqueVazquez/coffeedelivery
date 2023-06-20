@@ -11,7 +11,7 @@ export const StyledModal = styled(Modal)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${(props) => props.theme.colors['base-background']};
+  background-color: ${(props) => props.theme.colors['base-card']};
   box-shadow: none;
   gap: 1rem;
   padding: 1rem;
@@ -23,6 +23,7 @@ export const StyledModal = styled(Modal)`
 
   @media (max-width: 1360px) {
     padding-top: 0;
+    margin-top: 2rem;
   }
 
   @media (max-width: 610px) {
@@ -74,11 +75,13 @@ export const CloseButton = styled.button`
 `
 
 export const RegisterButton = styled.button`
-  width: 6.25rem;
+  width: 23rem;
   background: ${(props) => props.theme.colors['brand-purple-dark']};
   color: ${(props) => props.theme.colors['base-white']};
-  border-radius: 10px;
-  padding: 0.25rem 0 0.25rem 0;
+  border-radius: 6px;
+  padding: 0.75rem 0.5rem;
+  gap: 4px;
+  border: none;
   margin-top: 1rem;
 
   :hover {

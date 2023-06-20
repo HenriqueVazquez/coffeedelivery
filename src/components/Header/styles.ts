@@ -27,6 +27,10 @@ export const HeaderButtonsContainer = styled.nav`
   gap: 0.75rem;
 `
 
+export const Img = styled.img`
+  margin: 0.3rem;
+`
+
 interface HeaderButtonProps {
   variant: 'purple' | 'yellow'
 }
@@ -68,6 +72,15 @@ export const HeaderButton = styled.button<HeaderButtonProps>`
   ${({ variant, theme }) => css`
     background: ${theme.colors[`brand-${variant}-light`]};
     color: ${theme.colors[`brand-${variant}-dark`]};
+    :hover {
+      background: ${theme.colors[`brand-${variant}-dark`]};
+      color: ${theme.colors[`brand-${variant}-light`]};
+
+      span {
+        background: ${({ theme }) => theme.colors[`brand-${variant}-light`]};
+        color: ${({ theme }) => theme.colors[`brand-${variant}-dark`]};
+      }
+    }
 
     span {
       background: ${({ theme }) => theme.colors[`brand-${variant}-dark`]};
