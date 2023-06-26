@@ -9,6 +9,8 @@ export function modalReducer(state = initialState, action: Action) {
       return true
     case ActionTypeModal.HIDE_MODAL:
       return false
+    case ActionTypeModal.CLEAR_MODAL:
+      return initialState
     default:
       return state
   }

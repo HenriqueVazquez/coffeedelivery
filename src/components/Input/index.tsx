@@ -18,7 +18,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <InputWrapper className={className}>
         <InputStyleContainer hasError={!!error}>
-          <InputStyled hasError={!!error} ref={ref} {...props} />
+          <InputStyled
+            hasError={!!error}
+            ref={ref}
+            {...props}
+            value={props.value}
+            onChange={props.onChange}
+          />
           {rightText && <RightText>{rightText}</RightText>}
         </InputStyleContainer>
         {error && <ErrorText>{error}</ErrorText>}

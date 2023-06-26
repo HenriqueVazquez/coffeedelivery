@@ -29,6 +29,10 @@ export const StyledModal = styled(Modal)`
   @media (max-width: 610px) {
     width: 80%;
   }
+
+  @media (max-width: 495px) {
+    width: 100%;
+  }
 `
 
 export const Form = styled.form`
@@ -83,6 +87,10 @@ export const RegisterButton = styled.button`
   gap: 4px;
   border: none;
   margin-top: 1rem;
+
+  @media (max-width: 495px) {
+    width: 80%;
+  }
 
   :hover {
     background: ${(props) => props.theme.colors['brand-purple']};

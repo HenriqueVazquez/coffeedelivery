@@ -40,6 +40,9 @@ export const ContentContainer = styled.div`
 
   &:hover {
     background: ${({ theme }) => theme.colors['base-hover']};
+    svg {
+      color: ${({ theme }) => theme.colors['brand-purple-dark']};
+    }
   }
 
   user-select: none;

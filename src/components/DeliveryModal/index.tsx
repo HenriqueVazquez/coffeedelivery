@@ -8,13 +8,17 @@ import {
 } from './styles'
 
 import { useForm } from 'react-hook-form'
-import { ConfirmDelivery, deliveryFormValidationSchema } from '../../App'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AddressFields } from '../Form/AddressFields'
 import { HeaderForm } from '../Form/HeaderForm'
 import { MapPinLine, XCircle } from 'phosphor-react'
 import { useAddress } from '../../hooks/useAddress'
 import { useTheme } from 'styled-components'
+import {
+  ConfirmDelivery,
+  deliveryFormValidationSchema,
+} from '../../types/ConfirmDelivery'
 
 export function DeliveryModal() {
   const { colors } = useTheme()
@@ -23,23 +27,22 @@ export function DeliveryModal() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<ConfirmDelivery>({
     resolver: zodResolver(deliveryFormValidationSchema),
   })
 
   const { closeModal, showModal } = useModal()
-  const { setAddress, clearAddress } = useAddress()
+  const { setAddress } = useAddress()
 
   function onSubmit(data: ConfirmDelivery) {
+    console.log('data aqui')
+    console.log(data.district)
     setAddress(data)
     closeModal()
   }
 
   function handleCloseModal() {
-    reset()
     closeModal()
-    clearAddress()
   }
 
   return (

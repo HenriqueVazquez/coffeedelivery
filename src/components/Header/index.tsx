@@ -34,7 +34,7 @@ export function Header() {
             onClick={isCartRoute ? () => {} : openModal}
           >
             <MapPin size={20} weight="fill" />
-            {address ? `${address.city}, ${address.uf}` : `São Paulo, SP`}
+            {address.city ? `${address.city}, ${address.uf}` : `São Paulo, SP`}
           </HeaderButton>
 
           <NavLink to="/cart">

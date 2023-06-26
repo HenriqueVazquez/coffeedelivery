@@ -8,21 +8,13 @@ import { ModalContextProvider } from './contexts/ModalContext'
 
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as zod from 'zod'
+
 import { AddressContextProvider } from './contexts/AddressContext'
 import { useAddress } from './hooks/useAddress'
-
-export const deliveryFormValidationSchema = zod.object({
-  cep: zod.string().min(1, 'Informe o CEP'),
-  street: zod.string().min(1, 'Informe o Rua'),
-  number: zod.string().min(1, 'Informe o Número'),
-  complement: zod.string(),
-  district: zod.string().min(1, 'Informe o Bairro'),
-  city: zod.string().min(1, 'Informe a Cidade'),
-  uf: zod.string().min(1, 'Informe UF'),
-})
-
-export type ConfirmDelivery = zod.infer<typeof deliveryFormValidationSchema>
+import {
+  ConfirmDelivery,
+  deliveryFormValidationSchema,
+} from './types/ConfirmDelivery'
 
 export function App() {
   const { address } = useAddress()

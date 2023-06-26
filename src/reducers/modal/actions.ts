@@ -12,4 +12,10 @@ export function hideModal() {
   }
 }
 
+export function clearModal() {
+  return {
+    type: ActionTypeModal.CLEAR_MODAL,
+  }
+}
+
 export { ActionTypeModal }

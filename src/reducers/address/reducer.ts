@@ -17,6 +17,7 @@ export function addressReducer(
         city: action.payload.address.city,
         uf: action.payload.address.uf,
       }
+
       return newAddress
     }
 
@@ -27,8 +28,8 @@ export function addressReducer(
         number: '',
         complement: '',
         district: '',
-        city: 'São Paulo',
-        uf: 'SP',
+        city: '',
+        uf: '',
       }
 
       return clearAddress

@@ -20,6 +20,10 @@ export function ModalContextProvider({ children }: ModalContextProviderProps) {
     dispatch(actions.hideModal())
   }
 
+  const clearModal = () => {
+    dispatch(actions.clearModal())
+  }
+
   /* useEffect(() => {
     // Lógica para abrir ou fechar o modal
   }, [showModal]) */
@@ -28,6 +32,7 @@ export function ModalContextProvider({ children }: ModalContextProviderProps) {
     showModal,
     openModal,
     closeModal,
+    clearModal,
   }
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
