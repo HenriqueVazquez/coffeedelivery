@@ -3,4 +3,5 @@ export interface ModalContextType {
   closeModal: () => void
   showModal: any
   clearModal: () => void
+  setResetFunction: any
 }

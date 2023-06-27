@@ -18,4 +18,11 @@ export function clearModal() {
   }
 }
 
+export function setResetFunction(resetFn: () => void) {
+  return {
+    type: ActionTypeModal.SET_RESET_FUNCTION,
+    resetFn,
+  }
+}
+
 export { ActionTypeModal }

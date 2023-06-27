@@ -5,7 +5,14 @@ export function AddressForm() {
   const {
     register,
     formState: { errors },
+    setValue,
   } = useFormContext()
 
-  return <AddressFields register={register} errors={errors as FieldErrors} />
+  return (
+    <AddressFields
+      register={register}
+      errors={errors as FieldErrors}
+      setValue={setValue}
+    />
+  )
 }

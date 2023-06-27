@@ -18,11 +18,22 @@ export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>
 type ConfirmOrderFormData = OrderData
 
 export function Cart() {
+  const { address } = useAddress()
+
+  const defaultValues = {
+    cep: address.cep,
+    street: address.street,
+    number: address.number,
+    complement: address.complement,
+    district: address.district,
+    city: address.city,
+    uf: address.uf,
+    paymentMethod: undefined,
+  }
+
   const confirmOrderForm = useForm<ConfirmOrderFormData>({
     resolver: zodResolver(confirmOrderFormValidationSchema),
-    defaultValues: {
-      paymentMethod: undefined,
-    },
+    defaultValues,
   })
 
   const { handleSubmit } = confirmOrderForm
@@ -40,8 +51,6 @@ export function Cart() {
 
     clearAddress()
     clearModal()
-    console.log(' sfsfafasfasfagfa')
-
     resetCart()
   }
 

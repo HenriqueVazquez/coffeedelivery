@@ -11,11 +11,13 @@ import { AddressState } from '../../../interfaces/AddressState'
 interface AddressFieldsProps<T extends FieldValues> {
   register: any
   errors: FieldErrors<T>
+  setValue: any
 }
 
 export function AddressFields<T extends FieldValues>({
   register,
   errors,
+  setValue,
 }: AddressFieldsProps<T>) {
   const { address, setAddress } = useAddress()
   const [fetchedAddress, setFetchedAddress] = useState<AddressState>(
@@ -24,26 +26,17 @@ export function AddressFields<T extends FieldValues>({
 
   const [doFetch, setDoFetch] = useState<boolean>(false)
 
-  /* const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-
-  // Atualiza o valor do campo correspondente no estado fetchedAddress
-  setFetchedAddress((prevState) => ({
-    ...prevState,
-    [name]: value,
-  }))
-} */
+  const defaultData = {
+    cep: '',
+    street: '',
+    number: '',
+    complement: '',
+    district: '',
+    city: '',
+    uf: '',
+  }
 
   const fetchAddress = async (cep: string) => {
-    const defaultData = {
-      cep: '',
-      street: '',
-      number: '',
-      complement: '',
-      district: '',
-      city: '',
-      uf: '',
-    }
     try {
       setDoFetch(true)
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
@@ -59,6 +52,10 @@ export function AddressFields<T extends FieldValues>({
           city: data.localidade,
           uf: data.uf,
         })
+        setValue('street', data.logradouro)
+        setValue('district', data.bairro)
+        setValue('city', data.localidade)
+        setValue('uf', data.uf)
       } else {
         setFetchedAddress(defaultData)
       }
@@ -73,8 +70,8 @@ export function AddressFields<T extends FieldValues>({
 
   useEffect(() => {
     if (fetchedAddress !== address && doFetch) {
-      setAddress(fetchedAddress)
       setDoFetch(false)
+      setAddress(fetchedAddress)
     }
   }, [address, doFetch, fetchedAddress, setAddress])
 
@@ -87,7 +84,7 @@ export function AddressFields<T extends FieldValues>({
             name="cep"
             type="text"
             placeholder="CEP"
-            defaultValue={address?.cep}
+            defaultValue={address.cep}
             {...register('cep')}
             className="cep"
             error={
@@ -109,7 +106,6 @@ export function AddressFields<T extends FieldValues>({
             name="street"
             type="text"
             placeholder="Rua"
-            value={address?.street}
             {...register('street')}
             className="street"
             error={
@@ -128,7 +124,7 @@ export function AddressFields<T extends FieldValues>({
             name="number"
             type="text"
             placeholder="Número"
-            defaultValue={address?.number}
+            defaultValue={address.number}
             {...register('number')}
             className="number"
             error={
@@ -145,7 +141,7 @@ export function AddressFields<T extends FieldValues>({
             rightText="Opcional"
             type="text"
             placeholder="Complemento"
-            defaultValue={address?.complement}
+            defaultValue={address.complement}
             {...register('complement')}
             className="complement"
             error={
@@ -163,7 +159,6 @@ export function AddressFields<T extends FieldValues>({
             name="district"
             type="text"
             placeholder="Bairro"
-            value={address.district}
             {...register('district')}
             className="district"
             error={
@@ -179,7 +174,6 @@ export function AddressFields<T extends FieldValues>({
             name="city"
             type="text"
             placeholder="Cidade"
-            value={address.city}
             {...register('city')}
             className="city"
             error={
@@ -195,7 +189,6 @@ export function AddressFields<T extends FieldValues>({
             name="uf"
             type="text"
             placeholder="UF"
-            value={address.uf}
             className="uf"
             {...register('uf')}
             error={

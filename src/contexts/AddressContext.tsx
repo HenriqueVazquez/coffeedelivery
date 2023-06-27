@@ -28,8 +28,6 @@ export function AddressContextProvider({
     initialState,
     (initialState) => {
       const storedAddress = localStorage.getItem(Address)
-      console.log('storedAddress')
-      console.log(storedAddress)
 
       if (storedAddress) {
         return JSON.parse(storedAddress)
@@ -40,8 +38,6 @@ export function AddressContextProvider({
   )
 
   function setAddress(newAddress: AddressState) {
-    console.log('newAddress')
-    console.log(newAddress)
     dispatch(actions.setAddress(newAddress))
   }
 
@@ -51,8 +47,6 @@ export function AddressContextProvider({
 
   // Salva o endereço no localStorage sempre que houver uma mudança
   useEffect(() => {
-    console.log('localStorage')
-    console.log(address)
     localStorage.setItem(Address, JSON.stringify(address))
   }, [address])
 

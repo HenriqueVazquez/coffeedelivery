@@ -9,8 +9,18 @@ interface ModalContextProviderProps {
   children: ReactNode
 }
 
+interface ModalState {
+  showModal: boolean
+  resetFunction?: () => void
+}
+
+const initialState: ModalState = {
+  showModal: false,
+  resetFunction: undefined,
+}
+
 export function ModalContextProvider({ children }: ModalContextProviderProps) {
-  const [showModal, dispatch] = useReducer(modalReducer, false)
+  const [state, dispatch] = useReducer(modalReducer, initialState)
 
   const openModal = () => {
     dispatch(actions.showModal())
@@ -24,15 +34,16 @@ export function ModalContextProvider({ children }: ModalContextProviderProps) {
     dispatch(actions.clearModal())
   }
 
-  /* useEffect(() => {
-    // Lógica para abrir ou fechar o modal
-  }, [showModal]) */
+  const setResetFunction = (resetFn: () => void) => {
+    dispatch(actions.setResetFunction(resetFn))
+  }
 
   const value = {
-    showModal,
+    showModal: state.showModal,
     openModal,
     closeModal,
     clearModal,
+    setResetFunction,
   }
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>

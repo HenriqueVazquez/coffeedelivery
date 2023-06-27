@@ -19,31 +19,52 @@ import {
   ConfirmDelivery,
   deliveryFormValidationSchema,
 } from '../../types/ConfirmDelivery'
+import { useEffect, useMemo } from 'react'
 
 export function DeliveryModal() {
   const { colors } = useTheme()
+  const { address } = useAddress()
+
+  const defaultValues = useMemo(
+    () => ({
+      cep: address.cep,
+      street: address.street,
+      number: address.number,
+      complement: address.complement,
+      district: address.district,
+      city: address.city,
+      uf: address.uf,
+    }),
+    [address],
+  )
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
+    setValue,
   } = useForm<ConfirmDelivery>({
     resolver: zodResolver(deliveryFormValidationSchema),
+    defaultValues,
   })
 
-  const { closeModal, showModal } = useModal()
+  const { closeModal, showModal, setResetFunction } = useModal()
   const { setAddress } = useAddress()
 
   function onSubmit(data: ConfirmDelivery) {
-    console.log('data aqui')
-    console.log(data.district)
     setAddress(data)
+    setResetFunction(reset)
     closeModal()
   }
 
   function handleCloseModal() {
     closeModal()
   }
+
+  useEffect(() => {
+    reset(defaultValues)
+  }, [address, defaultValues, reset])
 
   return (
     <ModalContainer>
@@ -54,7 +75,11 @@ export function DeliveryModal() {
           icon={<MapPinLine color={colors['brand-yellow-dark']} size={22} />}
         />
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <AddressFields register={register} errors={errors} />
+          <AddressFields
+            register={register}
+            errors={errors}
+            setValue={setValue}
+          />
           <div className="registerButtonContainer">
             <RegisterButton type="submit">Cadastrar</RegisterButton>
           </div>
